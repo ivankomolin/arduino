@@ -1,6 +1,6 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`latest` (*Dockerfile*)](https://github.com/ivankomolin/docker-stm8/blob/master/Dockerfile)
+- [`latest` (*Dockerfile*)](https://github.com/ivankomolin/docker-arduino/blob/master/Dockerfile)
 
 # How to use this images
 
