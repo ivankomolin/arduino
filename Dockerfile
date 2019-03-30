@@ -1,15 +1,14 @@
-FROM ubuntu:18.04 as build
+FROM golang as build
 
-RUN apt-get update
-
-RUN apt-get install -y wget picocom
-
-RUN wget https://downloads.arduino.cc/arduino-cli/arduino-cli-latest-linux64.tar.bz2
-
-RUN tar -xvjf arduino-cli-latest-linux64.tar.bz2
+RUN go get -u github.com/arduino/arduino-cli
 
 
-FROM ubuntu:18.04
+FROM ubuntu
 
-COPY --from=build /*.preview-linux64 /usr/bin/arduino-cli
-COPY --from=build /usr/bin/picocom /usr/bin/picocom
+WORKDIR /app
+
+COPY --from=build /go/bin/arduino-cli /usr/bin/
+
+RUN apt-get update && \
+	apt-get install -y ca-certificates picocom bash && \
+	apt-get clean
