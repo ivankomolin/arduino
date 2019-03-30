@@ -8,7 +8,6 @@ RUN wget https://downloads.arduino.cc/arduino-cli/arduino-cli-latest-linux64.tar
 
 RUN tar -xvjf arduino-cli-latest-linux64.tar.bz2
 
-RUN whereis picocom
 
 FROM ubuntu:18.04
 
