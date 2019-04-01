@@ -18,4 +18,4 @@ $ docker run --rm ivankomolin/arduino picocom -b 115200 /dev/ttyACM0
 
 ### Used as workstation for developing
 
-See [Example](https://github.com/ivankomolin/docker-arduino-app-blank)
+See [https://github.com/ivankomolin/docker-arduino-app-blank](https://github.com/ivankomolin/docker-arduino-app-blank)
