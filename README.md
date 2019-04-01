@@ -4,18 +4,57 @@
 
 # How to use this images
 
-### Running arduino-cli
+### Install core
+Example install arduino:avr
+See [https://github.com/arduino/arduino-cli#step-4-find-and-install-the-right-core](https://github.com/arduino/arduino-cli#step-4-find-and-install-the-right-core)
 ```
-$ docker run --rm ivankomolin/arduino arduino-cli board list
+$ docker run --rm \
+	-v ${PWD}/app:/app \
+	-v ${HOME}/.arduino15:/root/.arduino15 \
+	--device=/dev/ttyUSB0 \
+		ivankomolin/arduino \
+    bash -c "arduino-cli core update-index && arduino-cli core install arduino:avr"
+```
+Core will be installed to your home directory ${HOME}/.arduino15
 
+
+### Create sketch
+```
+$ docker run --rm \
+	-v ${PWD}/app:/app \
+	-v ${HOME}/.arduino15:/root/.arduino15 \
+	--device=/dev/ttyUSB0 \
+		ivankomolin/arduino \
+    arduino-cli sketch new MyFirstSketch
 ```
 
-### Running picocom
+### Compile sketch
+```
+$ docker run --rm \
+	-v ${PWD}/app:/app \
+	-v ${HOME}/.arduino15:/root/.arduino15 \
+	--device=/dev/ttyUSB0 \
+		ivankomolin/arduino \
+    arduino-cli compile --fqbn arduino:avr:mega Arduino/MyFirstSketch
+```
+See [What is the FQBN ?](https://github.com/arduino/arduino-cli#what-is-the-fqbn-for-)
+
+### Upload sketch on device
+```
+$ docker run --rm \
+	-v ${PWD}/app:/app \
+	-v ${HOME}/.arduino15:/root/.arduino15 \
+	--device=/dev/ttyUSB0 \
+		ivankomolin/arduino \
+    arduino-cli upload -p /dev/ttyUSB0 --fqbn arduino:avr:mega Arduino/MyFirstSketch
+```
+
+### Use picocom for debug COM port
 ```
 $ docker run --rm ivankomolin/arduino picocom -b 115200 /dev/ttyACM0
 
 ```
 
-### Used as workstation for developing
+# Advanced usage with Make and environment
 
 See [https://github.com/ivankomolin/docker-arduino-app-blank](https://github.com/ivankomolin/docker-arduino-app-blank)
