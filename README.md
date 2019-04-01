@@ -17,25 +17,15 @@ $ docker run --rm \
 ```
 Core will be installed to your home directory ${HOME}/.arduino15
 
-
-### Create sketch
-```
-$ docker run --rm \
-	-v ${PWD}/app:/app \
-	-v ${HOME}/.arduino15:/root/.arduino15 \
-	--device=/dev/ttyUSB0 \
-		ivankomolin/arduino \
-    arduino-cli sketch new MyFirstSketch
-```
-
 ### Compile sketch
+Create sketch directory with any text editor in the ./app directory, such as ./app/blink/blink.ino
 ```
 $ docker run --rm \
 	-v ${PWD}/app:/app \
 	-v ${HOME}/.arduino15:/root/.arduino15 \
 	--device=/dev/ttyUSB0 \
 		ivankomolin/arduino \
-    arduino-cli compile --fqbn arduino:avr:mega Arduino/MyFirstSketch
+    arduino-cli compile --fqbn arduino:avr:mega /app/blink
 ```
 See [What is the FQBN ?](https://github.com/arduino/arduino-cli#what-is-the-fqbn-for-)
 
@@ -46,7 +36,7 @@ $ docker run --rm \
 	-v ${HOME}/.arduino15:/root/.arduino15 \
 	--device=/dev/ttyUSB0 \
 		ivankomolin/arduino \
-    arduino-cli upload -p /dev/ttyUSB0 --fqbn arduino:avr:mega Arduino/MyFirstSketch
+    arduino-cli upload -p /dev/ttyUSB0 --fqbn arduino:avr:mega /app/blink
 ```
 
 ### Use picocom for debug COM port
