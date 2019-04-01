@@ -39,12 +39,6 @@ $ docker run --rm \
     arduino-cli upload -p /dev/ttyUSB0 --fqbn arduino:avr:mega /app/blink
 ```
 
-### Use picocom for debug COM port
-```
-$ docker run --rm ivankomolin/arduino picocom -b 115200 /dev/ttyACM0
-
-```
-
 # Advanced usage with Make and environment
 
 See [https://github.com/ivankomolin/docker-arduino-app-blank](https://github.com/ivankomolin/docker-arduino-app-blank)
